@@ -35,6 +35,23 @@ print("After Residential filter:")
 print("Listings:", listings_res.shape)
 print("Sold:", sold_res.shape)
 
+# --------------------------------------------------
+# Week 1: Monthly Dataset Aggregation
+# IDX Exchange Internship
+# --------------------------------------------------
+
+# Files loaded:
+# Listing files found: 29
+# Sold files found: 29
+
+# Before Residential filter:
+# Listings dataset shape: (930311, 84)
+# Sold dataset shape: (643229, 84)
+
+# After Residential filter:
+# Residential Listings dataset shape: (591980, 84)
+# Residential Sold dataset shape: (433158, 84)
+
 # Save outputs
 output_path = "outputs"
 os.makedirs(output_path, exist_ok=True)
