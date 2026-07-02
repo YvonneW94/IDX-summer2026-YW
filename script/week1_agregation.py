@@ -1,6 +1,6 @@
 import pandas as pd
-import glob
-import os
+import glob  #Import glob to find multiple files that match a filename pattern.
+import os #Import os to work with file paths and folders.
 
 # Set folder path
 data_path = "/Users/wing/IDX intern/csv"
@@ -15,8 +15,28 @@ print(f"Listing files found: {len(listing_files)}")
 print(f"Sold files found: {len(sold_files)}")
 
 # Read and concatenate
-listing_dfs = [pd.read_csv(file) for file in listing_files]
-sold_dfs = [pd.read_csv(file) for file in sold_files]
+listing_dfs = []
+
+for file in listing_files:
+    df = pd.read_csv(file, low_memory=False)
+
+    # If file name contains "_filled", remove the last two extra columns
+    if "_filled" in file:
+        df = df.iloc[:, :-2]
+
+    listing_dfs.append(df)
+
+
+sold_dfs = []
+
+for file in sold_files:
+    df = pd.read_csv(file, low_memory=False)
+
+    # If file name contains "_filled", remove the last two extra columns
+    if "_filled" in file:
+        df = df.iloc[:, :-2]
+
+    sold_dfs.append(df)
 
 listings = pd.concat(listing_dfs, ignore_index=True)
 sold = pd.concat(sold_dfs, ignore_index=True)
