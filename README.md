@@ -22,12 +22,12 @@ This week focuses on combining monthly MLS listing and sold transaction CSV file
 ### Before Residential Filter
 
 - Listings: 930,311 rows, 84 columns
-- Sold: 643,229 rows, 84 columns
+- Sold: 643,229 rows, 82 columns
 
 ### After Residential Filter
 
-- Listings: 591,980 rows, 84 columns
-- Sold: 433,158 rows, 84 columns
+- Listings: 616,048 rows, 84 columns
+- Sold: 450,699 rows, 84 columns
 
 ## Outputs
 
