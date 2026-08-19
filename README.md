@@ -1,50 +1,89 @@
-# IDX Exchange MLS Analytics Internship
+# MLS Market Analytics & Tableau Dashboards
 
-## Week 1: Monthly Dataset Aggregation
+An end-to-end analytics project developed during my IDX Exchange Data Analyst Internship. The project transforms multi-period residential real estate records into validated, analysis-ready datasets and interactive market intelligence dashboards.
 
-This week focuses on combining monthly MLS listing and sold transaction CSV files into two master datasets for later analysis.
+> **Data privacy:** The source MLS records are confidential and are not included in this repository. This portfolio contains code and methodology only. Public Tableau visualizations present aggregated results rather than row-level transaction data.
 
-## Objectives
+## Project Highlights
 
-- Load all monthly `CRMLSListing` files.
-- Load all monthly `CRMLSSold` files.
-- Concatenate monthly files into combined listing and sold datasets.
-- Filter both datasets to `PropertyType == "Residential"`.
-- Export the residential-only datasets as new CSV files.
+- Processed 29 monthly listing files and 29 monthly sold files with Python and Pandas.
+- Aggregated approximately 1.57 million raw records and prepared approximately 1.06 million residential records for analysis.
+- Built reusable checks for missingness, duplicates, invalid dates, geographic anomalies, business-rule violations, and statistical outliers.
+- Enriched transaction data with monthly 30-year fixed mortgage rates from FRED.
+- Engineered market metrics covering price, inventory, transaction velocity, negotiation strength, and time-to-close.
+- Developed Tableau dashboards for market trends, affordability, geographic patterns, and agent/office performance.
 
-## Files Processed
+## Analytics Workflow
 
-- Listing files found: 29
-- Sold files found: 29
+```text
+Monthly files
+    -> aggregation and residential filtering
+    -> exploratory analysis and schema validation
+    -> data cleaning and quality flags
+    -> mortgage-rate enrichment
+    -> feature engineering and market metrics
+    -> outlier detection
+    -> aggregated Tableau dashboards
+```
 
-## Row Counts
+## Repository Structure
 
-### Before Residential Filter
+```text
+script/
+  week1_agregation.py                  Monthly file aggregation
+  Week2_EDA.ipynb                      Exploratory analysis and validation
+  week3_data_cleaning.ipynb            Cleaning and FRED enrichment
+  week4.ipynb                          Date and geographic quality checks
+  Week5.ipynb                          Analysis-ready dataset preparation
+  week6_feature_engineering_revised.ipynb
+                                       Feature engineering and segment summaries
+  week7_outlier_detection.py           IQR and business-rule outlier flags
+```
 
-- Listings: 930,311 rows, 84 columns
-- Sold: 643,229 rows, 82 columns
+## Key Metrics
 
-### After Residential Filter
+- Median close price
+- Price per square foot
+- Days on market
+- Close-to-original-list ratio
+- New listings and closed sales
+- Listing-to-contract and contract-to-close duration
+- Agent and office sales volume and transaction counts
+- Monthly mortgage rate and affordability indicators
 
-- Listings: 616,048 rows, 84 columns
-- Sold: 450,699 rows, 84 columns
+## Tableau Portfolio
 
-## Outputs
+View the interactive dashboards on [Tableau Public](https://public.tableau.com/app/profile/ying.wu2772/vizzes).
 
-The script generates:
+The portfolio includes:
 
-- `combined_listings_residential.csv`
-- `combined_sold_residential.csv`
+- Market Overview
+- Competitive Analysis Overview
+- Price and Affordability Analysis
+- Agent and Office Performance Overview
 
-Output CSV files are not uploaded to GitHub because they are large and contain confidential MLS data.
-
-## Tools Used
+## Tools
 
 - Python
-- Pandas
-- glob
-- os
+- Pandas and NumPy
+- SQL
+- Tableau
+- Jupyter Notebook
+- FRED economic data
 
-## Notes
+## Reproducibility
 
-Some columns produced mixed-type warnings during import. These warnings do not stop the aggregation process, but they will be reviewed in the data validation stage.
+The original data cannot be distributed. To adapt the workflow to an authorized dataset:
+
+1. Place source files in a local `csv/` directory.
+2. Update local input/output paths as needed.
+3. Run the scripts and notebooks sequentially from Week 1 through Week 7.
+4. Keep generated outputs in the ignored `outputs/` directory.
+
+Field names and availability may differ across MLS or transaction-data providers, so schema mappings may require adjustment.
+
+## Author
+
+Ying Wu  
+M.S. Analytics, University of Southern California
+

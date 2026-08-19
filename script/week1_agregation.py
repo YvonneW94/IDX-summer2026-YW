@@ -3,14 +3,72 @@ import glob  #Import glob to find multiple files that match a filename pattern.
 import os #Import os to work with file paths and folders.
 
 # Set folder path
-data_path = "/Users/wing/IDX intern/csv"
+data_path = "../csv"
 
-# Get all listing files
-listing_files = sorted(glob.glob(os.path.join(data_path, "CRMLSListing*.csv")))
+import re
 
-# Get all sold files
-sold_files = sorted(glob.glob(os.path.join(data_path, "CRMLSSold*.csv")))
 
+def select_one_file_per_month(
+    folder,
+    file_pattern
+):
+    files = sorted(
+        glob.glob(
+            os.path.join(
+                folder,
+                file_pattern
+            )
+        )
+    )
+
+    selected_files = {}
+
+    for file in files:
+        filename = os.path.basename(file)
+
+        month_match = re.search(
+            r"(20\d{4})",
+            filename
+        )
+
+        if not month_match:
+            continue
+
+        year_month = month_match.group(1)
+
+        # Prefer the corrected _filled file
+        # when both versions exist.
+        if (
+            year_month not in selected_files
+            or "_filled" in filename
+        ):
+            selected_files[year_month] = file
+
+    return [
+        selected_files[month]
+        for month in sorted(selected_files)
+    ]
+
+
+listing_files = select_one_file_per_month(
+    data_path,
+    "CRMLSListing*.csv"
+)
+
+sold_files = select_one_file_per_month(
+    data_path,
+    "CRMLSSold*.csv"
+)
+
+print(
+    f"Listing files found: "
+    f"{len(listing_files)}"
+)
+
+print(
+    f"Sold files found: "
+    f"{len(sold_files)}"
+)
 print(f"Listing files found: {len(listing_files)}")
 print(f"Sold files found: {len(sold_files)}")
 

@@ -1,4 +1,39 @@
+# Confidential and generated data
 csv/
 outputs/
+guide/
 *.csv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.db
+*.sqlite
+
+# Tableau packaged workbooks and embedded extracts
+*.hyper
+*.twbx
+*.twbr
+*.tfl
+*.tflx
+.~*
+#TableauTemp*
+
+# Credentials and local configuration
+.env
+.env.*
+*.pem
+*.key
+credentials*
+secrets*
+
+# Notebook and Python artifacts
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# IDE and operating-system files
 .DS_Store
+.vscode/
+.idea/
+
